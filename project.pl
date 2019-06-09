@@ -4,7 +4,7 @@ use Term::ANSIColor;
 
 
 $file='project.txt';
-$dictionary='dictionary.txt';
+$dictionary='Dictionary.txt';
 
 open($fh,'<:encoding(UTF-8)',$dictionary);
 while(my $row=<$fh>)
@@ -31,9 +31,10 @@ while(my $row=<$fh>)
 	print "$row\n";
 	#print colored(['on_bright_white black'],"Yellow on magenta.");
 	#print "\n";
-	$row=~ tr/./ /;
+	$row=~ tr/./ /;#刪除句點和逗點還有問號
 	$row=~ tr/,/ /;
-	my @data=split(/\s+/,$row);
+	$row=~ tr/?/ /;	
+	my @data=split(/\s+/,$row);#切割空白建
 	$leng=@data;
 	for(my $i=0;$i<$leng;$i++)
 	{
@@ -44,8 +45,6 @@ while(my $row=<$fh>)
 			
 			if($data[$i] eq $k)
 			{
-				#print "word:$k\n";
-				$similar_array[$i]=0;
 				$correct=1;
 				last;
 			}
@@ -69,7 +68,6 @@ while(my $row=<$fh>)
 				}
 				if(($match eq length($data[$i])-1) &&($chr_word[0] eq $chr_dict[0] || $chr_word[0] eq uc($chr_dict[0])))
 				{	
-					$similar_array[$i]++;
 					push @replace,$k;
 				}
 				
