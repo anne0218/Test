@@ -130,7 +130,7 @@ while(my $row=<$fh>)
 			}
 			elsif($select eq 'a')
 			{
-				open(DICT,">>dictionary.txt");
+				open(DICT,">>Dictionary.txt");
 				print DICT "$data[$i]\n";
 				close (DICT);
 			}
